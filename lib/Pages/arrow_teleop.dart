@@ -68,7 +68,7 @@ class _ArrowTeleopState extends State<ArrowTeleop> with TransitionRouteAware{
                 Container(
                   height: 350,
                   width: 350,
-                  child: MyWebView(
+                  child: VideoWebView(
                     title: "TurtleBotView",
                     selectedUrl:
                     streamUrl

@@ -29,6 +29,8 @@ dependencies:
   ros_nodes:
     git: https://github.com/Sashiri/ros_nodes.git
   get_ip: ^0.4.0
+  control_pad: ^1.1.1+1
+  vector_math: ^2.0.8
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

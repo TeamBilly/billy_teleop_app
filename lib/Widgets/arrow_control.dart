@@ -44,29 +44,12 @@ class _ArrowControllerState extends State<ArrowController> {
   var client = RosClient(config);
   // For the turtlebot3
   var topic = RosTopic('cmd_vel', GeometryMsgsTwist());
-
-  // For the turtlebot2
-  //var topic = RosTopic('mobile_base/commands/velocity', GeometryMsgsTwist());
   void onClickMove(move) async {
     await client.unregister(topic);
 
     var publisher = await client.register(topic,
         publishInterval: Duration(milliseconds: 100));
 
-/*    setState(() {
-      topic.msg.linear.x = move.x;
-      topic.msg.angular.z = move.rotz;
-
-
-    });
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        topic.msg.linear.x = 0;
-        topic.msg.angular.z = 0;
-
-
-      });
-    });*/
     if (_loopActive) return;
     _loopActive = true;
 

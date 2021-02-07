@@ -47,7 +47,7 @@ class _NavigationMapState extends State<NavigationMap> {
         Container(
           height: 250,
           width: 350,
-          child: MyWebView(
+          child: VideoWebView(
             title: "TurtleBotView",
             selectedUrl:
             streamUrl
@@ -59,7 +59,7 @@ class _NavigationMapState extends State<NavigationMap> {
             Container(
               height: 250,
               width: 350,
-              child: MyWebView(
+              child: VideoWebView(
                 title: "TurtleBotMap",
                 selectedUrl:
                 'http:/'+ widget.robotIP +':8080/stream?topic=/image_from_occupancy&type=mjpeg&quality=80&width=350&height=350',

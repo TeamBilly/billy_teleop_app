@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roslib/roslib.dart';
+import 'Pages/joystick_teleop.dart';
 import 'Pages/navigation_page.dart';
 import 'Routes/transition_route_observer.dart';
 import 'Widgets/arrow_control.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         ArrowTeleop.routeName: (context) => ArrowTeleop(),
         NavigationPage.routeName: (context) => NavigationPage(),
         MapRealTime.routeName: (context) => MapRealTime(),
+        JoystickTeleop.routeName:(context) => JoystickTeleop()
+
 
       },
     );

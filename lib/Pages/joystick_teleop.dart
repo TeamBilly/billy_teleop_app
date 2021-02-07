@@ -1,22 +1,24 @@
+import 'package:billyteleopapp/Routes/transition_route_observer.dart';
+import 'package:billyteleopapp/Widgets/joystick_control.dart';
 import 'package:flutter/material.dart';
 import 'package:roslib/roslib.dart';
-
-
-import 'login_page.dart';
-import '../Routes/transition_route_observer.dart';
+import '../Widgets/arrow_control.dart';
 import '../Widgets/camera.dart';
 import '../constants.dart';
-class MapRealTime extends StatefulWidget {
-  MapRealTime({Key key}) : super(key: key);
-  static const routeName = '/map_real_time';
-  _MapRealTimeState createState() => _MapRealTimeState();
+import 'login_page.dart';
+
+class JoystickTeleop extends StatefulWidget {
+  JoystickTeleop({Key key}) : super(key: key);
+  static const routeName = '/joystick_teleop';
+  _JoystickTeleopState createState() => _JoystickTeleopState();
 }
 
-class _MapRealTimeState extends State<MapRealTime> with TransitionRouteAware{
+class _JoystickTeleopState extends State<JoystickTeleop> with TransitionRouteAware{
   Ros ros;
   Topic chatter;
   //String robotIPX = "137.195.116.79";
   static robotIP() => robotIP_global;
+  static deviceIP() => deviceIP_global;
   @override
   void initState() {
     ros = Ros(url: 'ws://'+ robotIP() +':9090');
@@ -37,13 +39,13 @@ class _MapRealTimeState extends State<MapRealTime> with TransitionRouteAware{
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
     RobotAndDeviceIP ip = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Map Observation'),
+        title: Text('Robot Teleoperation'),
       ),
       body: Stack(
           children:
@@ -67,24 +69,19 @@ class _MapRealTimeState extends State<MapRealTime> with TransitionRouteAware{
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 250,
+                    height: 350,
                     width: 350,
                     child: VideoWebView(
-                      title: "TurtleBotView",
-                      selectedUrl:
-                      streamUrl
+                        title: "TurtleBotView",
+                        selectedUrl:
+                        streamUrl
                     ),
                   ),
                   SizedBox(height: 30.0),
-                  Container(
-                    height: 250,
-                    width: 350,
-                    child: VideoWebView(
-                      title: "TurtleBotMap",
-                      selectedUrl:
-                      'http:/'+ robotIP() +':8080/stream?topic=/image_from_occupancy&type=mjpeg&quality=80&width=350&height=350',
-
-                    ),
+                  JoystickController(
+                    robotIP: robotIP(),
+                    deviceIP: ip.deviceIP,
+                    onChange: (Offset delta) => print(delta),
                   ),
                 ],
               ),

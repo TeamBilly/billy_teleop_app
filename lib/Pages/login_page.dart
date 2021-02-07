@@ -1,4 +1,5 @@
 import 'package:billyteleopapp/Widgets/get_robot_parameter_textfield.dart';
+import 'package:billyteleopapp/Widgets/joystick_control.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_ip/get_ip.dart';
 
@@ -9,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:get_ip/get_ip.dart';
 import '../Routes/transition_route_observer.dart';
 import '../constants.dart';
+import 'joystick_teleop.dart';
 import 'map_real_time.dart';
 import 'arrow_teleop.dart';
 import 'navigation_page.dart';
@@ -135,14 +137,20 @@ class _LoginPageState extends State<LoginPage> with TransitionRouteAware{
                   SubmitButton(
                       pageName: "Robot Teleoperation",
                       routeName: ArrowTeleop.routeName
+                      //routeName: JoystickTeleop.routeName
+                  ),
+                  SubmitButton(
+                      pageName: "Joystick Teleoperation",
+                      routeName: JoystickTeleop.routeName
+                    //routeName: MapRealTime.routeName
+                  ),
+                  SubmitButton(
+                      pageName: "Navigation Control",
+                      routeName: MapRealTime.routeName
                   ),
                   SubmitButton(
                       pageName: "Navigation Control",
                       routeName: NavigationPage.routeName
-                  ),
-                  SubmitButton(
-                      pageName: "Map Observation",
-                      routeName: MapRealTime.routeName
                   ),
                 //Text("Ip value is $_ip")
                 ],
